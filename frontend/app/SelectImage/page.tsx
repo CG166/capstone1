@@ -17,7 +17,6 @@ export default function SelectImage() {
     if (source == "camera"){
         return(
             <main>
-                <h1>{source}</h1>
                 <TakePhoto/>
             </main>  
         )
@@ -25,7 +24,6 @@ export default function SelectImage() {
 
     return (
         <main>
-            <h1>{source}</h1>
             <SelectFile/>
         </main>
     )

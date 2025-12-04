@@ -65,7 +65,6 @@ export default function TakePhoto() {
                         audio={false}
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
-                        style={{ width: 320, height: 240 }}
                         />
                     )}
                 </div>
