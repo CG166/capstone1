@@ -7,7 +7,6 @@ type CAnalyzeResult = {
   color_analysis_results?: string[];
 };
 
-
 interface GlobalContextType {
   //File
   file: File | null;
@@ -28,6 +27,17 @@ interface GlobalContextType {
   //Color analysis results
   CAresults: CAnalyzeResult | null;
   setCAresults: (value: CAnalyzeResult | null) => void;
+
+  //Facial Analysis Results
+  faceshape: string;
+  setFaceshape: (value: string) => void;
+
+  focalpoints: string[];
+  setFocalpoints: (value: string[]) => void;
+
+  proportions: number[];
+  setProportions: (value: number[]) => void;
+
  
 }
 
@@ -47,6 +57,16 @@ export const GlobalContext = createContext<GlobalContextType>({
 
   CAresults: null,
   setCAresults: () => {},
+
+  faceshape: "",
+  setFaceshape: () => {},
+
+  focalpoints: [],
+  setFocalpoints: () => {},
+
+  proportions: [],
+  setProportions: () => {}
+
 });
 
 interface Props {
@@ -59,10 +79,13 @@ export const GlobalProvider = ({ children }: Props) => {
   const [displayUrl, setDisplayUrl] = useState<string>("");
   const [analysis, setAnalysis] = useState<string>("");
   const [CAresults, setCAresults] = useState<CAnalyzeResult | null>(null);
+  const [faceshape, setFaceshape] = useState<string>("");
+  const [focalpoints, setFocalpoints] = useState<string[]>([]);
+  const [proportions, setProportions] = useState<number[]>([]);
 
 
   return (
-    <GlobalContext.Provider value={{ file, setFile, source, setSource, displayUrl, setDisplayUrl, analysis, setAnalysis, CAresults, setCAresults }}>
+    <GlobalContext.Provider value={{ file, setFile, source, setSource, displayUrl, setDisplayUrl, analysis, setAnalysis, CAresults, setCAresults, faceshape, setFaceshape, focalpoints, setFocalpoints, proportions, setProportions }}>
       {children}
     </GlobalContext.Provider>
   );

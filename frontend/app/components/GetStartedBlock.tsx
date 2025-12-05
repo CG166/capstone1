@@ -8,7 +8,7 @@ export default function GetStartedblock() {
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-blue-950 text-7xl font-bold">Get Started</h1>
                 <Link href="/SelectAnalysis">
-                    <button className="bg-linear-to-b from-blue-900 via-blue-800 to-blue-950 px-8 py-2 rounded-2xl text-xl m-10">Start</button>
+                    <button className="bg-linear-to-b from-blue-900 via-blue-800 to-blue-950 px-8 py-2 rounded-2xl text-3xl m-10">Start</button>
                 </Link>
                 
             </div>

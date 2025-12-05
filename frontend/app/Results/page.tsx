@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "@/context/GlobalState";
 import ColorResults from "../components/ColorResults";
+import FaceResults from "../components/FaceResults";
 
 export default function Results() {
     const {analysis} = useContext(GlobalContext);
@@ -15,7 +16,9 @@ export default function Results() {
     }
     if (analysis == "face"){
         return(
-        <main></main>
+        <main>
+            <FaceResults/>
+        </main>
         )
     }
 

@@ -131,7 +131,7 @@ export default function ColorResults() {
         oppositeIncompatiblePalette3 = coolVibrant;
         oppositeIncompatiblePalette4 =  coolBold;
     }
-    if(undertone == "warm" && depth == "Bold") {
+    if(undertone == "warm" && depth == "bold") {
         primaryPalette = warmBold;
         secondaryPalette = warmVibrant;
          fraternalIncompatiblePalette = warmSoft;
@@ -168,7 +168,7 @@ export default function ColorResults() {
         oppositeIncompatiblePalette3 = warmVibrant;
         oppositeIncompatiblePalette4 = warmBold;
     }
-    if(undertone == "cool-neutral" && depth == "Bold") {
+    if(undertone == "cool-neutral" && depth == "bold") {
         primaryPalette = coolNeutralBold;
         secondaryPalette = coolNeutralVibrant;
         fraternalIncompatiblePalette = coolNeutralSoft;
@@ -205,7 +205,7 @@ export default function ColorResults() {
         oppositeIncompatiblePalette3 = coolNeutralSoft;
         oppositeIncompatiblePalette4 = []
     }
-    if(undertone == "neutral" && depth == "Bold") {
+    if(undertone == "neutral" && depth == "bold") {
         primaryPalette = neutralBold;
         secondaryPalette = neutralVibrant;
         fraternalIncompatiblePalette = neutralSoft;
@@ -223,6 +223,15 @@ export default function ColorResults() {
             </main>
         )
     }
+
+    if (!CAresults?.color_analysis_results) {
+    return (
+            <main className="text-white p-6">
+                <h2>No color results found.</h2>
+            </main>
+        );
+    }
+
     return(
         <main className="min-w-screen min-h-screen w-auto h-auto bg-linear-to-tr from-blue-900 via-blue-800 to-blue-950 flex flex-col items-center">
             <div className="flex pt-10 justify-end w-full mr-15 mb-5">
@@ -230,26 +239,40 @@ export default function ColorResults() {
             </div>
             <div ref={resultRef} className="p-6 rounded-lg flex flex-col items-center" style={{ backgroundColor: "#1e3a8a"}}>
                 <h1 className="text-3xl font-semibold p-5 pb-2">Color Analysis Results</h1>
-                <hr className="w-[80vw] border-t-2 p-2"></hr>
+                <hr className="w-[60vw] border-t-2 p-2 mx-auto mt-2"></hr>
                 <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto min-h-[15vh] min-w-[60vw]">
-                    <p className="text-xl text-center ">The results of the analysis show that you have a {undertone} toned color profile with {tones} tones,
+                    <p className="text-xl text-center font-mono pb-4">The results of the analysis show that you have a {undertone} toned color profile with {tones} tones,
                      as well as complexion that lends itself best to {depth} colors. These are some example palettes of colors
                       that will best flatter you, as well a palettes containing colors that can be unflattering.</p>
                 </div>
                 <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
-                    <h1>Primary Color Group</h1>
+                    <h1 className="text-2xl font-semibold text-center">Primary Color Group</h1>
+                    <hr className="w-[40vw] border-t-2 p-2 mx-auto mt-2" />
+                    <p className="font-mono">This is an example palette of the sort of color that match you best. They share your {undertone} tone, and also
+                        fall into the {depth} section of the saturation spectrum, which is the most suited for your complexion.
+                    </p>
                 </div>
                 <ColorPaletteBox Hexcodes={primaryPalette}/>
                 <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
-                    <h1>Next Best Option</h1>
+                    <h1 className="text-2xl font-semibold text-center">Next Best Option</h1>
+                    <hr className="w-[40vw] border-t-2 p-2 mx-auto mt-2" />
+                    <p className="font-mono">This is an example palette of the next best sort of colors that suit you.Like your primary color, these colors also share your {undertone} tone, 
+                        however they do not fall into the {depth} section of the saturation spectrum, which is your ideal, but are still close enough that they will look well on you.
+                    </p>
                 </div>
                 <ColorPaletteBox Hexcodes={secondaryPalette}/>
                 <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
-                    <h1>Some {undertone} colors to Avoid</h1>
+                    <h1 className="text-2xl font-semibold text-center">Some {undertone} colors to Avoid</h1>
+                    <hr className="w-[40vw] border-t-2 p-2 mx-auto mt-2"/>
+                    <p className="font-mono">This is an example palette of the color that, although they share the same {undertone} as you, have the potential to be unflattering on you due to the fact that
+                        their level of staturation is considerably removed from the {depth} colors that you are best suited for.
+                    </p>
                 </div>
                 <ColorPaletteBox Hexcodes={fraternalIncompatiblePalette}/>
                 <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
-                    <h1>Colors to Steer Clear Of</h1>
+                    <h1 className="text-2xl font-semibold text-center">Colors to Steer Clear Of</h1>
+                    <hr className="w-[40vw] border-t-2 p-2 mx-auto mt-2" />
+                    <p className="font-mono">These are example palettes of colors are best to avoid as they tend to clash with the {undertone} tone of your skin.</p>
                 </div>
                 <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette1}/>
                 <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette2}/>

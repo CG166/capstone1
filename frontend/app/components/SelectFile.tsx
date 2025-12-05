@@ -19,6 +19,8 @@ export default function SelectFile() {
         if(analysis) {
             if(analysis == "color") {
                 router.push("/ColorAna"); 
+            } else if (analysis == "face") {
+                router.push("/FaceAna"); 
             }
         }
     }

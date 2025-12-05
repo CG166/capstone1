@@ -46,7 +46,7 @@ export default function TakePhoto() {
             if(analysis == "color") {
                 router.push("/ColorAna"); 
             } else if (analysis == "face") {
-            
+                router.push("/FaceAna"); 
             }
         }
     }

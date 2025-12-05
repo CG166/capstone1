@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect} from "react";
 import { useRouter } from "next/navigation";
 import { GlobalContext } from "@/context/GlobalState";
 import Image from "next/image";
