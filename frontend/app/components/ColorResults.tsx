@@ -1,36 +1,41 @@
 'use client';
 
 //References
-//https://www.youtube.com/watch?v=J2s45eUXwc0  #html2pdf
+//https://www.youtube.com/watch?v=mI2xMUMvr0E&t=444s  #html2canvas
 
 import { useContext, useRef } from "react";
 import { GlobalContext } from "@/context/GlobalState";
 import ColorPaletteBox from "./ColorPaletteBox";
 
-import html2pdf from "html2pdf.js";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+
+
 
 export default function ColorResults() {
     const {CAresults} = useContext(GlobalContext);
-    const resultRef = useRef(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+    let primaryPalette: string[] = [];
+    let secondaryPalette: string[] = [];
+    let fraternalIncompatiblePalette: string[] = [];
+    let oppositeIncompatiblePalette1: string[] = [];
+    let oppositeIncompatiblePalette2: string[] = [];
+    let oppositeIncompatiblePalette3: string[] = [];
+    let oppositeIncompatiblePalette4: string[] = [];
 
-    const saveResults = () => {
-        const resultFormat = {
-            margin: 1,
-            filename: "ColorAnalysisResults.pdf",
-            html2canvas: { scale: 2 },
-            jsPDF: {
-                unit: "in" as const,
-                format: "letter" as const,
-                orientation: "portrait" as const
-            }
-        }
+    
+    const saveResults = async () => {
+        if (!resultRef.current) return;
 
-        if(!resultRef.current){
-            return;
-        }
+        const colorAnalysisResults = resultRef.current;
 
-        html2pdf().from(resultRef.current).set(resultFormat).save()
-    }
+        const canvas = await html2canvas(colorAnalysisResults, { scale: 2 });
+        const imgData = canvas.toDataURL("image/png");
+
+        const pdf = new jsPDF("portrait", "px", "a4");
+        pdf.addImage(imgData,"PNG",0,0, pdf.internal.pageSize.getWidth(),(canvas.height * pdf.internal.pageSize.getWidth()) / canvas.width);
+        pdf.save("ColorAnalysisResults.pdf");
+}
 
     //Pallete Suite
     const coolBold = ["#0A2F51","#19376D","#2F195F","#3A0CA3","#5A1E76","#7A1C4E","#8A1C3F","#184A45","#0F4C3A","#1B5E6A","#264653","#1C2C3E"];
@@ -54,8 +59,161 @@ export default function ColorResults() {
     const coolNeutralBold = ["#2F3C52", "#263449", "#3A2E53", "#4A2D61", "#4B244A", "#391D3A", "#243A3E", "#1F454A", "#184D53", "#263C63", "#332F6A", "#2B254D"];
 
 
+    if(!CAresults?.color_analysis_results) {
+        return;
+    }
+    const undertone = CAresults.color_analysis_results[0];
+    const tones = CAresults.color_analysis_results[1];
+    const depth = CAresults.color_analysis_results[2];
 
+    if(undertone == "cool" && depth == "soft") {
+        primaryPalette = coolSoft;
+        secondaryPalette = coolClear;
+        fraternalIncompatiblePalette =coolBold;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 =  warmBold;
+    }
+    if(undertone == "cool" && depth == "clear") {
+        primaryPalette = coolClear;
+        secondaryPalette = coolVibrant;
+         fraternalIncompatiblePalette = coolBold;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 =  warmBold;
+    }
+    if(undertone == "cool" && depth == "vibrant") {
+        primaryPalette = coolVibrant;
+        secondaryPalette = coolClear;
+         fraternalIncompatiblePalette = coolSoft;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 =  warmBold; 
+    }
+    if(undertone == "cool" && depth == "bold") {
+        primaryPalette = coolBold;
+        secondaryPalette = coolVibrant;
+         fraternalIncompatiblePalette = coolSoft;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 =  warmBold;
+    }
 
+    if(undertone == "warm" && depth == "soft") {
+        primaryPalette = warmSoft;
+        secondaryPalette = warmClear;
+         fraternalIncompatiblePalette = warmBold;
+        oppositeIncompatiblePalette1 = coolSoft;
+        oppositeIncompatiblePalette2 = coolClear;
+        oppositeIncompatiblePalette3 = coolVibrant;
+        oppositeIncompatiblePalette4 =  coolBold;
+    }
+    if(undertone == "warm" && depth == "clear") {
+        primaryPalette = warmClear;
+        secondaryPalette = warmVibrant;
+         fraternalIncompatiblePalette = warmBold;
+        oppositeIncompatiblePalette1 = coolSoft;
+        oppositeIncompatiblePalette2 = coolClear;
+        oppositeIncompatiblePalette3 = coolVibrant;
+        oppositeIncompatiblePalette4 =  coolBold;
+        
+    }
+    if(undertone == "warm" && depth == "vibrant") {
+        primaryPalette = warmVibrant;
+        secondaryPalette = warmClear;
+         fraternalIncompatiblePalette = warmSoft;
+        oppositeIncompatiblePalette1 = coolSoft;
+        oppositeIncompatiblePalette2 = coolClear;
+        oppositeIncompatiblePalette3 = coolVibrant;
+        oppositeIncompatiblePalette4 =  coolBold;
+    }
+    if(undertone == "warm" && depth == "Bold") {
+        primaryPalette = warmBold;
+        secondaryPalette = warmVibrant;
+         fraternalIncompatiblePalette = warmSoft;
+        oppositeIncompatiblePalette1 = coolSoft;
+        oppositeIncompatiblePalette2 = coolClear;
+        oppositeIncompatiblePalette3 = coolVibrant;
+        oppositeIncompatiblePalette4 =  coolBold;
+    }
+
+    if(undertone == "cool-neutral" && depth == "soft") {
+        primaryPalette = coolNeutralSoft;
+        secondaryPalette = coolNeutralClear;
+        fraternalIncompatiblePalette = coolNeutralBold;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 = warmBold;
+    }
+    if(undertone == "cool-neutral" && depth == "clear") {
+        primaryPalette = coolNeutralClear;
+        secondaryPalette =  coolNeutralVibrant;
+        fraternalIncompatiblePalette = coolBold;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 = warmBold;
+    }
+    if(undertone == "cool-neutral" && depth == "vibrant") {
+        primaryPalette = coolNeutralVibrant;
+        secondaryPalette = coolNeutralClear;
+        fraternalIncompatiblePalette = coolNeutralSoft;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 = warmBold;
+    }
+    if(undertone == "cool-neutral" && depth == "Bold") {
+        primaryPalette = coolNeutralBold;
+        secondaryPalette = coolNeutralVibrant;
+        fraternalIncompatiblePalette = coolNeutralSoft;
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = warmClear;
+        oppositeIncompatiblePalette3 = warmVibrant;
+        oppositeIncompatiblePalette4 = warmBold;
+    }
+
+    if(undertone == "neutral" && depth == "soft") {
+        primaryPalette = neutralSoft;
+        secondaryPalette = neutralClear;
+        fraternalIncompatiblePalette = neutralBold;
+        oppositeIncompatiblePalette1 = warmBold;
+        oppositeIncompatiblePalette2 = coolBold;
+        oppositeIncompatiblePalette3 = coolNeutralBold;
+        oppositeIncompatiblePalette4 = []
+    }
+    if(undertone == "neutral" && depth == "clear") {
+        primaryPalette = neutralClear;
+        secondaryPalette = neutralVibrant;
+        fraternalIncompatiblePalette = neutralBold;
+        oppositeIncompatiblePalette1 = warmBold;
+        oppositeIncompatiblePalette2 = coolBold;
+        oppositeIncompatiblePalette3 = coolNeutralBold;
+        oppositeIncompatiblePalette4 = []
+    }
+    if(undertone == "neutral" && depth == "vibrant") {
+        primaryPalette = neutralVibrant;
+        secondaryPalette = neutralClear;
+        fraternalIncompatiblePalette = neutralSoft
+        oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = coolSoft;
+        oppositeIncompatiblePalette3 = coolNeutralSoft;
+        oppositeIncompatiblePalette4 = []
+    }
+    if(undertone == "neutral" && depth == "Bold") {
+        primaryPalette = neutralBold;
+        secondaryPalette = neutralVibrant;
+        fraternalIncompatiblePalette = neutralSoft;
+       oppositeIncompatiblePalette1 = warmSoft;
+        oppositeIncompatiblePalette2 = coolSoft;
+        oppositeIncompatiblePalette3 = coolNeutralSoft;
+        oppositeIncompatiblePalette4 = []
+    }
 
 
     if(!CAresults) {
@@ -66,29 +224,37 @@ export default function ColorResults() {
         )
     }
     return(
-        <main className="min-w-screen min-h-screen w-auto h-auto bg-linear-to-b from-blue-900 to-blue-950 flex flex-col items-center">
-            <div className="flex pt-10 justify-end w-full mr-15">
+        <main className="min-w-screen min-h-screen w-auto h-auto bg-linear-to-tr from-blue-900 via-blue-800 to-blue-950 flex flex-col items-center">
+            <div className="flex pt-10 justify-end w-full mr-15 mb-5">
                 <button onClick={saveResults} className="bg-linear-to-tr from-orange-700 via-orange-400 to-orange-600 px-8 py-2 rounded-xl font-bold text-2xl">Save Results</button>
             </div>
-            <div ref={resultRef} className="">
+            <div ref={resultRef} className="p-6 rounded-lg flex flex-col items-center" style={{ backgroundColor: "#1e3a8a"}}>
                 <h1 className="text-3xl font-semibold p-5 pb-2">Color Analysis Results</h1>
                 <hr className="w-[80vw] border-t-2 p-2"></hr>
-                <ColorPaletteBox Hexcodes={coolSoft}/>
-                <ColorPaletteBox Hexcodes={coolClear}/>
-                <ColorPaletteBox Hexcodes={coolVibrant}/>
-                <ColorPaletteBox Hexcodes={coolBold}/>
-                <ColorPaletteBox Hexcodes={warmSoft}/>
-                <ColorPaletteBox Hexcodes={warmClear}/>
-                <ColorPaletteBox Hexcodes={warmVibrant}/>
-                <ColorPaletteBox Hexcodes={warmBold}/>
-                <ColorPaletteBox Hexcodes={neutralSoft}/>
-                <ColorPaletteBox Hexcodes={neutralClear}/>
-                <ColorPaletteBox Hexcodes={neutralVibrant}/>
-                <ColorPaletteBox Hexcodes={neutralBold}/>
-                <ColorPaletteBox Hexcodes={coolNeutralSoft}/>
-                <ColorPaletteBox Hexcodes={coolNeutralClear}/>
-                <ColorPaletteBox Hexcodes={coolNeutralVibrant}/>
-                <ColorPaletteBox Hexcodes={coolNeutralBold}/>
+                <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto min-h-[15vh] min-w-[60vw]">
+                    <p className="text-xl text-center ">The results of the analysis show that you have a {undertone} toned color profile with {tones} tones,
+                     as well as complexion that lends itself best to {depth} colors. These are some example palettes of colors
+                      that will best flatter you, as well a palettes containing colors that can be unflattering.</p>
+                </div>
+                <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
+                    <h1>Primary Color Group</h1>
+                </div>
+                <ColorPaletteBox Hexcodes={primaryPalette}/>
+                <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
+                    <h1>Next Best Option</h1>
+                </div>
+                <ColorPaletteBox Hexcodes={secondaryPalette}/>
+                <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
+                    <h1>Some {undertone} colors to Avoid</h1>
+                </div>
+                <ColorPaletteBox Hexcodes={fraternalIncompatiblePalette}/>
+                <div className="max-h-[30vh] max-w-[70vw] w-auto h-auto">
+                    <h1>Colors to Steer Clear Of</h1>
+                </div>
+                <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette1}/>
+                <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette2}/>
+                <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette3}/>
+                <ColorPaletteBox Hexcodes={oppositeIncompatiblePalette4}/>
             </div>
         </main>
     )
