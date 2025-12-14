@@ -1,4 +1,4 @@
-# Capstone1
+# Capstone - Coloryze: Automated Personal Color Profile and Face Shape Analysis  
 
 ## Technical References Used
 [1] Face landmark detection guide for Python. (2025). Google AI for Developers. https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker/python  
