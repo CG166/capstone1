@@ -12,18 +12,21 @@
 [5] DigitalSreeni. (2022, December 23). White balancing your pictures using Python [Video]. YouTube. https://www.youtube.com/watch?v=Z0-iM37wseI&t=707s    
 
 
-### Frontend Setup
-cd frontend
-npm install
-npm install react-webcam html2canvas jspdf
+## Frontend Setup
+cd frontend  
+npm install  
+npm install react-webcam html2canvas jspdf  
+
 
 ## Backend Setup
-pip install fastapi uvicorn pydantic numpy opencv-python mediapipe
+pip install fastapi uvicorn pydantic numpy opencv-python mediapipe  
+
 
 ## Starting up frontend server
-cd frontend
-npm run dev
+cd frontend  
+npm run dev  
+
 
 ## Starting up backend server
-cd backend
-uvicorn server:app --reload --port 8000
+cd backend  
+uvicorn server:app --reload --port 8000  
