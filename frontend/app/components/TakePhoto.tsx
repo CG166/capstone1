@@ -55,7 +55,7 @@ export default function TakePhoto() {
    
     return (
         <main className="flex flex-col items-center justify-center bg-linear-to-tr from-orange-700 via-orange-400 to-orange-600 h-[92vh]">
-            <h1 className="text-5xl font-extrabold">Select An Image File</h1>
+            <h1 className="text-5xl font-extrabold">Take a Photo</h1>
             <div className="flex flex-row m-10">
                 <div className="min-w-[30vw] min-h-[50vh] max-w-[50vw] max-h-[60vh]">
                     {file ? (
