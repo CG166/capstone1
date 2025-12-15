@@ -5,6 +5,13 @@ import { useRouter } from "next/navigation";
 import { GlobalContext } from "@/context/GlobalState";
 import Image from "next/image";
 
+//Requirements Fullfilled//
+/*11. When the user clicks the view in-depth results, the system shall display a screen displaying the in-depth results of the color analysis.
+Description: The system shall display a screen displaying the in-depth results of the color analysis.
+Precondition: The user must have been on the color analysis general results page.
+Postcondition: The in-depth color analysis results page will be displayed.
+ */
+
 type CAnalyzeResult = {
   error?: string;
   color_analysis_results?: string[];

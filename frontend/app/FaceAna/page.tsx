@@ -5,6 +5,18 @@ import { useRouter } from "next/navigation";
 import { GlobalContext } from "@/context/GlobalState";
 import Image from "next/image";
 
+//Requirements Fullfilled//
+/*12. When the user taps the submit button, the system shall display the results page which displays the general results of the facial feature analysis.
+Description: The system shall display the results page which displays the general results of the facial feature analysis.
+Precondition:The user must have selected the begin a new facial feature analysis button instead of the begin a new color analysis button, and must have either selected an image from their files or taken a photo with their webcam.
+Postcondition: The system will display the results page which displays the results of the facial feature analysis.
+
+13. When the user clicks the view in-depth results button, the system shall display a screen displaying the in-depth results of the facial feature analysis.
+Description: The system shall display a screen displaying the in-depth results of the facial feature analysis.
+Precondition: The user must have been on the facial feature analysis general results page.
+Postcondition: The in-depth facial feature analysis results page will be displayed.
+ */
+
 type FAnalyzeResult = {
   error?: string;
   faceshape: string;

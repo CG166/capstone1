@@ -10,6 +10,17 @@ import ColorPaletteBox from "./ColorPaletteBox";
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 
+//Requirements Fullfilled//
+/*16. When the user clicks the save button, the system shall save the result in the specified format, at the specified location.
+Description: The system shall save the result in the specified format, at the specified location.
+Precondition: The user must have selected a format and selected a location in which to store the results.
+Postcondition: The results will have been saved in the user’s specified location.
+
+19. When the user clicks the return to homepage button, the system shall redirect them to the start screen..
+Description: The system shall redirect the user to the start screen.
+Precondition: The application must be running, and the user cannot already be on the start screen..
+Postcondition: The user will have been redirected to the start screen.
+ */
 
 
 export default function ColorResults() {

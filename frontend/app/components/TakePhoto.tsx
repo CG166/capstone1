@@ -9,6 +9,28 @@ import { GlobalContext } from "@/context/GlobalState";
 import React, { useRef, useContext } from "react";
 import Webcam from "react-webcam";
 
+//Requirements FullFilled//
+/*7. When the user clicks the take photo button, the system shall present/open the camera capture dialog and allow the user to take a photo.
+Description: The system will open up the camera capture dialog and allow the user to take a photo.
+Precondition: The user must have clicked on the take a photo button instead of clicking on the upload an image button.
+Postcondition: A photo will have been taken.
+
+8. When the user takes a photo via the camera capture dialog, the system shall display the photo and prompt the user to verify whether that is the photo they wish to submit.
+Description:  The system shall display the photo and prompt the user to verify whether that is the photo they wish to submit.
+Precondition: The user must have taken at least one photo.
+Postcondition: The user can either verify that the photo is the one they wish to submit or try again.
+
+10. When the user taps the submit button, the system shall display the results page which displays the general results of the color analysis (basic color profile).
+Description: The user clicks the submit button, and the system shall display the results page which displays the general results of the color analysis (basic color profile).
+Precondition: The user must have selected the begin a new color analysis button instead of the begin a new facial feature analysis button, and must have either selected an image from their files or taken a photo with their webcam.
+Postcondition: The system will display the results page which displays the general results of the color analysis (basic color profile).
+
+12. When the user taps the submit button, the system shall display the results page which displays the general results of the facial feature analysis.
+Description: The system shall display the results page which displays the general results of the facial feature analysis.
+Precondition:The user must have selected the begin a new facial feature analysis button instead of the begin a new color analysis button, and must have either selected an image from their files or taken a photo with their webcam.
+Postcondition: The system will display the results page which displays the results of the facial feature analysis.
+*/
+
 
 export default function TakePhoto() {
     const { file, setFile }  = useContext(GlobalContext);

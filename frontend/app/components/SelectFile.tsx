@@ -4,6 +4,12 @@ import { useRouter } from "next/navigation";
 import { useRef, useContext } from "react";
 import { GlobalContext } from "@/context/GlobalState";
 
+//Requirements FullFilled//
+/*5. When the user clicks the select a file button, the system shall present/open the file selection dialog and allow the user to select a file.
+Description: The system will open up the file selection dialog and allow the user to select a file.
+Precondition: The user must have clicked on the select an image dialog, and have an existing image.
+Postcondition: An image will have been selected.*/
+
 export default function SelectFile() {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const { file, setFile }  = useContext(GlobalContext);
