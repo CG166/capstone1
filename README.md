@@ -33,7 +33,8 @@ python3 -m venv venv
 source venv/bin/activate  
 #Windows#  
 venv\Scripts\activate  
-pip install fastapi uvicorn pydantic numpy opencv-python mediapipe  
+pip install fastapi uvicorn pydantic numpy opencv-python mediapipe python-multipart
+  
 
 
 ## Starting up frontend server
