@@ -12,7 +12,7 @@
 [5] DigitalSreeni. (2022, December 23). White balancing your pictures using Python [Video]. YouTube. https://www.youtube.com/watch?v=Z0-iM37wseI&t=707s  
 
 ## Prerequistites  
-Have Node.js, Python, and pip installed on your device/enviorment.  
+Have Node.js, Python, Python-venv and pip installed on your device/enviorment.  
 
 sudo apt install nodejs npm
 
