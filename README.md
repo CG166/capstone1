@@ -12,7 +12,11 @@
 [5] DigitalSreeni. (2022, December 23). White balancing your pictures using Python [Video]. YouTube. https://www.youtube.com/watch?v=Z0-iM37wseI&t=707s  
 
 ## Prerequistites  
-Have Node.js, Python, and pip installed on your device/enviorment.  
+Have Node.js, Python, and pip installed on your device/enviorment. 
+*nvm install --lts  
+nvm use --lts*
+*sudo apt install python3 python3-pip python3-venv -y*
+
 
 
 ## Frontend Setup
@@ -22,6 +26,10 @@ npm install react-webcam html2canvas jspdf
 
 
 ## Backend Setup
+cd backend  
+python3 -m venv venv  
+#Linux/MacOS# source venv/bin/activaten  
+#Windows#  venv\Scripts\activate  
 pip install fastapi uvicorn pydantic numpy opencv-python mediapipe  
 
 
