@@ -9,7 +9,10 @@
   
 [4] vlogize. (2022, December 13). How to convert Base64 to image file in JavaScript [Video]. YouTube. https://www.youtube.com/watch?v=-_pwtmOZDlY    
   
-[5] DigitalSreeni. (2022, December 23). White balancing your pictures using Python [Video]. YouTube. https://www.youtube.com/watch?v=Z0-iM37wseI&t=707s    
+[5] DigitalSreeni. (2022, December 23). White balancing your pictures using Python [Video]. YouTube. https://www.youtube.com/watch?v=Z0-iM37wseI&t=707s  
+
+## Prerequistites  
+Have Node.js, Python, and pip installed on your device/enviorment.  
 
 
 ## Frontend Setup
