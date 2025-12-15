@@ -13,6 +13,7 @@
 
 ## Prerequistites  
 Have Node.js, Python, and pip installed on your device/enviorment.  
+
 sudo apt install nodejs npm
 
 sudo apt install python3 python3-pip python3-venv -y
