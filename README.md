@@ -28,8 +28,10 @@ npm install react-webcam html2canvas jspdf
 ## Backend Setup
 cd backend  
 python3 -m venv venv  
-#Linux/MacOS# source venv/bin/activaten  
-#Windows#  venv\Scripts\activate  
+#Linux/MacOS#  
+source venv/bin/activaten  
+#Windows#  
+venv\Scripts\activate  
 pip install fastapi uvicorn pydantic numpy opencv-python mediapipe  
 
 
